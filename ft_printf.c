@@ -18,11 +18,9 @@ static	int	check_con(char format, va_list args)
 
 	len = 0;
 	if (format == 'd' || format == 'i')
-	{
-		len = ft_putnbr(va_arg(args, int));
-	return (len);
-	}
-	
+	return (len += ft_putnbr(va_arg(args, int)));
+	else if (format == 'u')
+	return (len += ft_putnbr_u(va_arg(args, unsigned int)));
 	else if (format == 'c')
 	return (len+= ft_putchar(va_arg(args, int)));
 	else if (format == 's')
@@ -30,7 +28,7 @@ static	int	check_con(char format, va_list args)
 	else if (format == 'x' || format == 'X')
 	return (len+= ft_putnbr_base(va_arg(args, int), format));
 	else if (format == 'p')
-	return (len+= ft_putstr("0X") +  ft_putnbr_base(va_arg(args, int), 'x'));
+	return (len+= ft_putstr("0x") +  ft_putnbr_add((uintptr_t)va_arg(args, void *)));
 	else if (format == '%')
 	return (len+= ft_putchar('%'));
 	else
@@ -56,20 +54,18 @@ int	ft_printf(const char *format, ...)
 			count += check_con(format[i], args);
 		}
 		else
-		{
-			count += ft_putchar(format[i]);
-		}
+		count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end (args);
 	return (count);
 }
-#include <stdio.h>
-int main()
-{
-	char *p;
-	p = "safia";
-	ft_printf("hello my name is %s and i'm %d and my add is %p\n", "hajar", 23, p);
-	ft_printf("\nhellpp fnnf %d\n", 55);
-	ft_putnbr(32);
-}
+// #include <stdio.h>
+// int main()
+// {
+//   	char *p = "hajar";
+
+//     ft_printf("d %X and %p and %u\n", 42, p, -65536);
+//     printf("d %X and %p and %u\n", 42, p, 4294967295);
+// 	ft_putnbr_u(4294967295);
+// }

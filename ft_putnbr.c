@@ -22,18 +22,16 @@ int	ft_putnbr(int n)
 	 if (nbr < 0)
 	{
 		ft_putchar('-');
-		nbr = -nbr;
+		nbr = (-1)*nbr;
 	}
 	else if (nbr >= 10)
 	{
 		ft_putnbr(nbr / 10);
 		ft_putnbr(nbr % 10);
-		i++;
 	}
 	else if (nbr >= 0 && nbr <= 9)
 	{
-		ft_putchar(nbr + 48);
+		i += ft_putchar(nbr + 48);
 	}
 	return (i);
-		
 }

@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
-SRC =	ft_printf.c ft_putnbr.c ft_putstr.c ft_putnbr_base.c ft_putchar.c
+SRC =	ft_printf.c ft_putnbr.c ft_putstr.c ft_putnbr_base.c ft_putchar.c ft_putnbr_add.c ft_putnbr_u.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -14,10 +14,10 @@ $(NAME):$(OBJ) ft_printf.h
 	ar rcs $(NAME) $(OBJ)
 
 clean:
-	del /Q $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	del /Q $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
