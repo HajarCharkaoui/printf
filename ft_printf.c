@@ -10,86 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "ft_printf.h"
 
+static	int	check_con(char format, va_list args)
+{
+	int	len;
+
+	len = 0;
+	if (format == 'd' || format == 'i')
+	{
+		len = ft_putnbr(va_arg(args, int));
+	return (len);
+	}
+	
+	else if (format == 'c')
+	return (len+= ft_putchar(va_arg(args, int)));
+	else if (format == 's')
+	return (len+= ft_putstr(va_arg(args, char *)));
+	else if (format == 'x' || format == 'X')
+	return (len+= ft_putnbr_base(va_arg(args, int), format));
+	else if (format == 'p')
+	return (len+= ft_putstr("0X") +  ft_putnbr_base(va_arg(args, int), 'x'));
+	else if (format == '%')
+	return (len+= ft_putchar('%'));
+	else
+	return (len);
+}
 
 int	ft_printf(const char *format, ...)
 {
 	va_list args;
-	unsigned int i;
-	unsigned int count;
+	int i;
+	int count;
 
 	va_start(args, format);
 	i = 0;
 	count = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'd')
-			{
-				// va_arg(args, int);
-				ft_putnbr(va_arg(args, int));
-				count ++;
-				
-			}
-			else if (format[i + 1] == 'c')
-			{
-				char c = (char)va_arg(args, int);
-				write (1, &c, 1);
-				count++;
-			}
-			else if (format[i + 1] == 's')
-			{
-				ft_putstr(va_arg(args, char *));
-				count++;
-				
-			}
-			else if (format[i + 1] == 'p')
-			{
-				
-			}
-			else if (format[i + 1] == 'i')
-			{
-				
-			}
-			else if (format[i + 1] == 'u')
-			{
-				
-			}
-			else if (format[i + 1] == 'x')
-			{
-				
-			}
-			else if (format[i + 1] == 'X')
-			{
-				
-			}
-			
+			i++;
+			if (format[i] == '\0')
+			break;
+			count += check_con(format[i], args);
 		}
 		else
 		{
-			if (format[i]!= 'd')
-			{
-				write (1, &format[i], 1);
-				count += count;
-			}
-			
+			count += ft_putchar(format[i]);
 		}
 		i++;
 	}
-	
 	va_end (args);
 	return (count);
-	
 }
 #include <stdio.h>
 int main()
 {
-	// char *p;
-	// p = "safia";
-	ft_printf("hello my name is %s and i'm %d\n", "hajar", 23);
+	char *p;
+	p = "safia";
+	ft_printf("hello my name is %s and i'm %d and my add is %p\n", "hajar", 23, p);
+	ft_printf("\nhellpp fnnf %d\n", 55);
 	ft_putnbr(32);
-	// unsigned long f;
-	// f = (unsigned long)p;
 }
