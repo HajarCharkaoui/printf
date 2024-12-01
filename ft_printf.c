@@ -28,7 +28,7 @@ static	int	check_con(char format, va_list args)
 	else if (format == 'x' || format == 'X')
 	return (len+= ft_putnbr_base(va_arg(args, int), format));
 	else if (format == 'p')
-	return (len+= ft_putstr("0x") +  ft_putnbr_add((uintptr_t)va_arg(args, void *)));
+	return (len+= ft_putstr("0x") +  ft_putnbr_add((unsigned long)va_arg(args, void *)));
 	else if (format == '%')
 	return (len+= ft_putchar('%'));
 	else
