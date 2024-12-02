@@ -6,7 +6,7 @@
 /*   By: hacharka <hacharka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:52:28 by hacharka          #+#    #+#             */
-/*   Updated: 2024/11/29 11:19:12 by hacharka         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:23:54 by hacharka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_con(char format, va_list args)
 	else if (format == 's')
 		return (len += ft_putstr(va_arg(args, char *)));
 	else if (format == 'x' || format == 'X')
-		return (len += ft_putnbr_base(va_arg(args, int), format));
+		return (len += ft_putnbr_base(va_arg(args, unsigned int), format));
 	else if (format == 'p')
 		return (len += ft_putstr("0x")
 			+ ft_putnbr_add((unsigned long)va_arg(args, void *)));

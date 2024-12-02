@@ -6,7 +6,7 @@
 /*   By: hacharka <hacharka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:02:40 by hacharka          #+#    #+#             */
-/*   Updated: 2024/12/02 13:29:35 by hacharka         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:24:41 by hacharka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	ft_putnbr_u(unsigned int n)
 {
-	unsigned long	nbr;
-	int				i;
+	int	i;
 
 	i = 0;
-	nbr = n;
 	if (n == 0)
 		i++;
 	while (n != 0)
@@ -26,14 +24,14 @@ int	ft_putnbr_u(unsigned int n)
 		n /= 10;
 		i++;
 	}
-	if (nbr >= 10)
+	if (n >= 10)
 	{
-		ft_putnbr_u(nbr / 10);
-		ft_putnbr_u(nbr % 10);
+		ft_putnbr_u(n / 10);
+		ft_putnbr_u(n % 10);
 	}
-	else if (nbr <= 9)
+	else if (n <= 9)
 	{
-		ft_putchar(nbr + 48);
+		ft_putchar(n + 48);
 	}
 	return (i);
 }
