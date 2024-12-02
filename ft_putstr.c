@@ -6,7 +6,7 @@
 /*   By: hacharka <hacharka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:37:30 by hacharka          #+#    #+#             */
-/*   Updated: 2024/11/29 10:54:55 by hacharka         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:29:24 by hacharka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_putstr(char *s)
 	i = 0;
 	if (!s)
 	{
-		ft_putstr("null");
+		write(1, "(null)", 6);
 		return (6);
 	}
 	while (s[i])

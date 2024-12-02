@@ -12,34 +12,35 @@
 
 #include "ft_printf.h"
 
-static	int	check_con(char format, va_list args)
+static int	check_con(char format, va_list args)
 {
 	int	len;
 
 	len = 0;
 	if (format == 'd' || format == 'i')
-	return (len += ft_putnbr(va_arg(args, int)));
+		return (len += ft_putnbr(va_arg(args, int)));
 	else if (format == 'u')
-	return (len += ft_putnbr_u(va_arg(args, unsigned int)));
+		return (len += ft_putnbr_u(va_arg(args, unsigned int)));
 	else if (format == 'c')
-	return (len+= ft_putchar(va_arg(args, int)));
+		return (len += ft_putchar(va_arg(args, int)));
 	else if (format == 's')
-	return (len+= ft_putstr(va_arg(args, char *)));
+		return (len += ft_putstr(va_arg(args, char *)));
 	else if (format == 'x' || format == 'X')
-	return (len+= ft_putnbr_base(va_arg(args, int), format));
+		return (len += ft_putnbr_base(va_arg(args, int), format));
 	else if (format == 'p')
-	return (len+= ft_putstr("0x") +  ft_putnbr_add((unsigned long)va_arg(args, void *)));
+		return (len += ft_putstr("0x")
+			+ ft_putnbr_add((unsigned long)va_arg(args, void *)));
 	else if (format == '%')
-	return (len+= ft_putchar('%'));
+		return (len += ft_putchar('%'));
 	else
-	return (len);
+		return (len);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	int i;
-	int count;
+	va_list	args;
+	int		i;
+	int		count;
 
 	va_start(args, format);
 	i = 0;
@@ -50,14 +51,14 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '\0')
-			break;
+				break ;
 			count += check_con(format[i], args);
 		}
 		else
-		count += ft_putchar(format[i]);
+			count += ft_putchar(format[i]);
 		i++;
 	}
-	va_end (args);
+	va_end(args);
 	return (count);
 }
 // #include <stdio.h>
